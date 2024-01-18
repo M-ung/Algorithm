@@ -1,9 +1,11 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String st = sc.next();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String st = br.readLine();
 
         int total = 1; // 전체 횟수
         char pre_index = 'n'; // 반복문 첫 번째 일 땐, 앞 문자가 없기 때문에 대비용으로 'n'이라고 가정했다.
