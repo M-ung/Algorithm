@@ -4,31 +4,33 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+    public static long n;
+    public static long k;
+    public static long low;
+    public static long high;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        int N = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
-        int K = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
 
-        long start = 1;
-        long end = K;
+        low = 1;
+        high = n*n;
 
-        while(start < end) {
-            long mid = (start + end) / 2;
-            long cnt = 0;
-            for(int i=1; i<=N; i++) {
-                cnt += Math.min(mid/i, N);
+        while(low <= high) {
+            long mid = (low+high)/2;
+            long count = 0;
+
+            for(int i=1; i<=n; i++) {
+                count += Math.min(n, mid / i);
             }
-
-            if(K <= cnt) {
-                end = mid;
-            }
-            else {
-                start = mid + 1;
+            if(count < k) {
+                low = mid + 1;
+            }else {
+                high = mid - 1;
             }
         }
-        System.out.println(start);
+        System.out.println(low);
     }
 }
