@@ -19,12 +19,13 @@ public class Main {
             schedules.add(new Schedule(time, money));
         }
 
-        for (int i = 0; i < n; i++) {
-            dp[i + 1] = Math.max(dp[i + 1], dp[i]);
+        for(int i=0; i<n; i++) {
             int time = schedules.get(i).getTime();
             int money = schedules.get(i).getMoney();
-            if (i + time <= n) {
-                dp[i + time] = Math.max(dp[i + time], dp[i] + money);
+            dp[i+1] = Math.max(dp[i], dp[i+1]);
+
+            if(i+time <= n) {
+                dp[i+time] = Math.max(dp[i+time], dp[i] + money);
             }
         }
         System.out.println(dp[n]);
