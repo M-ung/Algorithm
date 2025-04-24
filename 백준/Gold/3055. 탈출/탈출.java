@@ -20,7 +20,7 @@ public class Main {
 
         map = new char[r][c];
         dist = new int[r][c];
-        
+
         for(int i=0; i<r; i++) {
             String s = br.readLine();
             for(int j=0; j<c; j++) {
@@ -54,23 +54,21 @@ public class Main {
                 int nx = p.x + dx[k];
                 int ny = p.y + dy[k];
 
-                if(nx < 0 || ny < 0 || nx >= map.length || ny >= map[0].length) continue;
-
-                if(p.c == '*') {
-                    if(map[nx][ny] == '.') {
-                        map[nx][ny] = '*';
-                        queue.offer(new Point(nx, ny, '*'));
-                    }
-                }
-
-                else if (p.c == 'S') {
-                    if ((map[nx][ny] == '.' || map[nx][ny] == 'D') && dist[nx][ny] == 0) {
-                        dist[nx][ny] = dist[p.x][p.y] + 1;
-                        if (map[nx][ny] == 'D') {
-                            System.out.println(dist[nx][ny] - 1);
-                            return;
+                if(nx >= 0 && ny >= 0 && nx < map.length && ny < map[0].length) {
+                    if(p.c == '*') {
+                        if(map[nx][ny] == '.') {
+                            map[nx][ny] = '*';
+                            queue.offer(new Point(nx, ny, '*'));
                         }
-                        queue.offer(new Point(nx, ny, 'S'));
+                    } else if (p.c == 'S') {
+                        if ((map[nx][ny] == '.' || map[nx][ny] == 'D') && dist[nx][ny] == 0) {
+                            dist[nx][ny] = dist[p.x][p.y] + 1;
+                            if (map[nx][ny] == 'D') {
+                                System.out.println(dist[nx][ny] - 1);
+                                return;
+                            }
+                            queue.offer(new Point(nx, ny, 'S'));
+                        }
                     }
                 }
             }
