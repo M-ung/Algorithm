@@ -27,10 +27,10 @@ public class Main {
         }
     }
 
-    private static boolean isSafe(int row, int candidateCol) {
-        for (int i = 0; i < row; i++) {
-            if (col[i] == candidateCol || Math.abs(row - i) == Math.abs(candidateCol - col[i]))
-                return false;
+    private static boolean isSafe(int r, int c) {
+        for(int i=0; i<r; i++) {
+            if(col[i] == c) return false;
+            if(Math.abs(r-i) == Math.abs(c-col[i])) return false;
         }
         return true;
     }
